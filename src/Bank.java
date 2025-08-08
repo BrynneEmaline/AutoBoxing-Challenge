@@ -13,7 +13,6 @@ public class Bank {
     public void addCustomer(Customer customer) {
         Iterator<Customer> iterator = customers.iterator();
         while (iterator.hasNext()) {
-            iterator.next();
             if (iterator.next().getName().equals(customer.getName())) {
                 System.out.println("Customer already in system.");
                 break;
@@ -22,13 +21,29 @@ public class Bank {
         customers.add(customer);
     }
 
-    public void addTransaction(Double amount) {
+    public void addTransaction(double amount, Customer customer) {
+        Iterator<Customer> iterator = customers.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().getName().equals(customer.getName())) {
+                customer.getTransactions().add(amount);
+            }
+            System.out.println("Customer not found");
+        }
+
+
         // adds amount given to arraylist of transactions in customer
 
     }
 
-    public void printCustomerInfo(Customer customer) {
-        // print customer name
+    public ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
+    public String toString() {
+        return "Customers: " + customers;
+    }
+
+    public void printCustomerInfo(Customer customer) {        // print customer name
         // and transaction amounts. method should use unboxing
         // how does it unbox? takes Double wrapper from customer arraylist of transactions
         // and returns a double

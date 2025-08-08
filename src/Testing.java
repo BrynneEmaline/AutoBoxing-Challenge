@@ -1,4 +1,28 @@
+
 public class Testing {
+    public static void main(String[] args) {
+
+        Bank bank = new Bank("Mr.Bank");
+        Customer customer1 = new Customer("Fred");
+        Customer customer2 = new Customer("Tom");
+        Customer customer3 = new Customer("Bill");
+        Customer customer4 = new Customer("Jerry");
+        Customer customer5 = new Customer("Jerry"); //testing customer is already in the system logic
+
+        bank.addCustomer(customer1);
+        bank.addCustomer(customer2);
+        bank.addCustomer(customer3);
+        bank.addCustomer(customer4);
+        bank.addCustomer(customer5);
+
+        System.out.println(bank.toString());
+
+
+    }
+
+
+
+
 
 
 
