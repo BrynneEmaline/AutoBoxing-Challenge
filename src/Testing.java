@@ -1,3 +1,4 @@
+import java.util.Iterator;
 
 public class Testing {
     public static void main(String[] args) {
@@ -15,7 +16,8 @@ public class Testing {
         bank.addCustomer(customer4);
         bank.addCustomer(customer5);
 
-        System.out.println(bank.toString());
+        bank.getCustomersNames();
+
 
 
     }

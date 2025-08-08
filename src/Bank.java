@@ -34,8 +34,10 @@ public class Bank {
 
     }
 
-    public ArrayList<Customer> getCustomers() {
-        return customers;
+    public void getCustomersNames() {
+        for (Customer customer : customers) {
+            System.out.println(customer.getName());
+        }
     }
 
     public String toString() {
