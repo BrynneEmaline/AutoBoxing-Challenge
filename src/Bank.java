@@ -22,9 +22,8 @@ public class Bank {
     }
 
     public void addTransaction(double amount, Customer customer) {
-        Iterator<Customer> iterator = customers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().getName().equals(customer.getName())) {
+        for (Customer value : customers) {
+            if (value.getName().equals(customer.getName())) {
                 customer.getTransactions().add(amount);
             }
             System.out.println("Customer not found");
