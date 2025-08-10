@@ -17,6 +17,8 @@ public class Testing {
         bank.addCustomer(customer5);
 
         bank.getCustomersNames();
+        bank.addTransaction(100.0, "Fred");
+        System.out.println(customer1.getTransactions());
 
 
 

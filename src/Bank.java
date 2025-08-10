@@ -21,17 +21,14 @@ public class Bank {
         customers.add(customer);
     }
 
-    public void addTransaction(double amount, Customer customer) {
+    public void addTransaction(double amount, String name) {
         for (Customer value : customers) {
-            if (value.getName().equals(customer.getName())) {
-                customer.getTransactions().add(amount);
+            if (value.getName().equals(name)) {
+                value.getTransactions().add(amount);
+                return;
             }
-            System.out.println("Customer not found");
         }
-
-
-        // adds amount given to arraylist of transactions in customer
-
+        System.out.println("Customer not found");
     }
 
     public void getCustomersNames() {
