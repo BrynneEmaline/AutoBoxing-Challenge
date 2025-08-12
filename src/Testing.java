@@ -10,17 +10,9 @@ public class Testing {
         Customer customer4 = new Customer("Jerry");
         Customer customer5 = new Customer("Jerry"); //testing customer is already in the system logic
 
-        bank.addCustomer(customer1);
-        bank.addCustomer(customer2);
-        bank.addCustomer(customer3);
-        bank.addCustomer(customer4);
-        bank.addCustomer(customer5);
-
-        bank.getCustomersNames();
-        bank.addTransaction(100.0, "Fred");
-        System.out.println(customer1.getTransactions());
-
-
+        UserMenu userMenu = new UserMenu();
+        userMenu.startMessage();
+        userMenu.runMenu();
 
     }
 

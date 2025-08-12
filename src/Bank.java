@@ -10,15 +10,17 @@ public class Bank {
         customers = new ArrayList<>();
     }
 
-    public void addCustomer(Customer customer) {
+    public void addCustomer(String name) {
         Iterator<Customer> iterator = customers.iterator();
         while (iterator.hasNext()) {
-            if (iterator.next().getName().equals(customer.getName())) {
+            if (iterator.next().getName().equals(name)) {
                 System.out.println("Customer already in system.");
-                break;
+                return;
             }
         }
+        Customer customer = new Customer(name);
         customers.add(customer);
+        System.out.println("New user added. ");
     }
 
     public void addTransaction(double amount, String name) {
@@ -41,7 +43,7 @@ public class Bank {
         return "Customers: " + customers;
     }
 
-    public void printCustomerInfo(Customer customer) {        // print customer name
+    public void printCustomerInfo(String name) {        // print customer name
         // and transaction amounts. method should use unboxing
         // how does it unbox? takes Double wrapper from customer arraylist of transactions
         // and returns a double
