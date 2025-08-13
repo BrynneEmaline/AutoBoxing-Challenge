@@ -36,7 +36,7 @@ public class UserMenu {
                     System.out.println("Which user is this transaction for? ");
                     scanner.nextLine();
                     String name = scanner.nextLine();
-                    if (bank.userExists(name)) {
+                    if (bank.userExists(name)) { // add exception handling for non-double responses
                         System.out.println("How much is the transaction for? ");
                         double amount = scanner.nextDouble();
                         bank.addTransaction(amount, name);
@@ -47,6 +47,7 @@ public class UserMenu {
                 }
                 case 4 -> {
                     System.out.println("What is the user's name? ");
+                    scanner.nextLine();
                     String name = scanner.nextLine();
                     bank.printCustomerInfo(name);
                 }

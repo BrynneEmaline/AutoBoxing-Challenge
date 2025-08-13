@@ -25,21 +25,18 @@ public class Bank {
     public boolean userExists(String name) {
         for (Customer customer: customers) {
             if (customer.getName().equals(name)) {
-                System.out.println("Customer " + name + " found.");
                 return true;
             }
         }
-        System.out.println("Customer not found.");
+        System.out.println("Customer not found. ");
         return false;
     }
 
-    public void addTransaction(double amount, String name) {
+    public void addTransaction(double amount, String name) {    // add query for debit/credit and way to store them as pos/neg
             if (userExists(name)) {
-                System.out.println("Customer found");
                 getCustomerByName(name).getTransactions().add(amount);
-                return;
+                System.out.println("transaction added");
             }
-        System.out.println("Customer not found");
     }
 
     public Customer getCustomerByName(String name) {
@@ -61,7 +58,10 @@ public class Bank {
         return "Customers: " + customers;
     }
 
-    public void printCustomerInfo(String name) {        // print customer name
+    public void printCustomerInfo(String name) {
+        System.out.println(name + "'s transactions: ");
+        System.out.println(getCustomerByName(name).getTransactions());
+        // print customer name
         // and transaction amounts. method should use unboxing
         // how does it unbox? takes Double wrapper from customer arraylist of transactions
         // and returns a double
