@@ -36,13 +36,14 @@ public class UserMenu {
                     System.out.println("Which user is this transaction for? ");
                     scanner.nextLine();
                     String name = scanner.nextLine();
-                    System.out.println("How much is the transaction for? ");
-                    scanner.nextLine();
-                    double amount = scanner.nextDouble();
-                    bank.addTransaction(amount, name);
+                    if (bank.userExists(name)) {
+                        System.out.println("How much is the transaction for? ");
+                        double amount = scanner.nextDouble();
+                        bank.addTransaction(amount, name);
+                    }
                 }
                 case 3 -> {
-                    bank.getCustomersNames();
+                    bank.listCustomers();
                 }
                 case 4 -> {
                     System.out.println("What is the user's name? ");

@@ -11,9 +11,8 @@ public class Bank {
     }
 
     public void addCustomer(String name) {
-        Iterator<Customer> iterator = customers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().getName().equals(name)) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(name)) {
                 System.out.println("Customer already in system.");
                 return;
             }
@@ -23,17 +22,36 @@ public class Bank {
         System.out.println("New user added. ");
     }
 
-    public void addTransaction(double amount, String name) {
-        for (Customer value : customers) {
-            if (value.getName().equals(name)) {
-                value.getTransactions().add(amount);
-                return;
+    public boolean userExists(String name) {
+        for (Customer customer: customers) {
+            if (customer.getName().equals(name)) {
+                System.out.println("Customer " + name + " found.");
+                return true;
             }
         }
+        System.out.println("Customer not found.");
+        return false;
+    }
+
+    public void addTransaction(double amount, String name) {
+            if (userExists(name)) {
+                System.out.println("Customer found");
+                getCustomerByName(name).getTransactions().add(amount);
+                return;
+            }
         System.out.println("Customer not found");
     }
 
-    public void getCustomersNames() {
+    public Customer getCustomerByName(String name) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(name)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public void listCustomers() {
         for (Customer customer : customers) {
             System.out.println(customer.getName());
         }

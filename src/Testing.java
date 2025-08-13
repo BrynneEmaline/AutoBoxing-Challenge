@@ -4,11 +4,6 @@ public class Testing {
     public static void main(String[] args) {
 
         Bank bank = new Bank("Mr.Bank");
-        Customer customer1 = new Customer("Fred");
-        Customer customer2 = new Customer("Tom");
-        Customer customer3 = new Customer("Bill");
-        Customer customer4 = new Customer("Jerry");
-        Customer customer5 = new Customer("Jerry"); //testing customer is already in the system logic
 
         UserMenu userMenu = new UserMenu();
         userMenu.startMessage();
