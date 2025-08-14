@@ -32,9 +32,13 @@ public class Bank {
         return false;
     }
 
-    public void addTransaction(double amount, String name) {    // add query for debit/credit and way to store them as pos/neg
+    public void addTransaction(double amount, String name, String transactionType) {
             if (userExists(name)) {
-                getCustomerByName(name).getTransactions().add(amount);
+                double finalAmount = amount;
+                if (transactionType.equalsIgnoreCase("W")) {
+                    finalAmount = -Math.abs(amount);
+                }
+                getCustomerByName(name).getTransactions().add(finalAmount);
                 System.out.println("transaction added");
             }
     }

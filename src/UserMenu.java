@@ -37,9 +37,11 @@ public class UserMenu {
                     scanner.nextLine();
                     String name = scanner.nextLine();
                     if (bank.userExists(name)) { // add exception handling for non-double responses
+                        System.out.println("Is this transaction a withdrawal or deposit? W/D ");
+                        String transactionType = scanner.nextLine();
                         System.out.println("How much is the transaction for? ");
                         double amount = scanner.nextDouble();
-                        bank.addTransaction(amount, name);
+                        bank.addTransaction(amount, name, transactionType);
                     }
                 }
                 case 3 -> {
