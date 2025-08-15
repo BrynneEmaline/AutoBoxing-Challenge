@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserMenu {
@@ -11,7 +12,7 @@ public class UserMenu {
     public void runMenu() {
 
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice =  -1;
         do {
 
             System.out.print("""
@@ -22,8 +23,13 @@ public class UserMenu {
                      4. View user transactions
                      5. Exit application
                     """);
-
-            choice = scanner.nextInt();
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice. ");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1 -> {
