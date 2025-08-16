@@ -1,12 +1,10 @@
-import java.util.Iterator;
-
 public class Testing {
     public static void main(String[] args) {
 
-        Bank bank = new Bank("Mr.Bank");
+        Bank bank = new Bank();
 
         UserMenu userMenu = new UserMenu();
-        userMenu.startMessage();
+        System.out.println(userMenu.startMessage());
         userMenu.runMenu();
 
     }

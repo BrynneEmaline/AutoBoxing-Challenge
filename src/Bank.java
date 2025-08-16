@@ -1,12 +1,9 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Bank {
-    private String name;
     ArrayList<Customer> customers;
 
-    public Bank(String name) {
-        this.name = name;
+    public Bank() {
         customers = new ArrayList<>();
     }
 
@@ -33,14 +30,14 @@ public class Bank {
     }
 
     public void addTransaction(double amount, String name, String transactionType) {
-            if (userExists(name)) {
-                double finalAmount = amount;
-                if (transactionType.equalsIgnoreCase("W")) {
-                    finalAmount = -Math.abs(amount);
-                }
-                getCustomerByName(name).getTransactions().add(finalAmount);
-                System.out.println("transaction added");
+        if (userExists(name)) {
+            double finalAmount = amount;
+            if (transactionType.equalsIgnoreCase("W")) {
+                finalAmount = -Math.abs(amount);
             }
+            getCustomerByName(name).getTransactions().add(finalAmount);
+            System.out.println("transaction added");
+        }
     }
 
     public Customer getCustomerByName(String name) {
@@ -53,23 +50,15 @@ public class Bank {
     }
 
     public void listCustomers() {
+        System.out.println("~~~~~~~~~~~~~~");
         for (Customer customer : customers) {
             System.out.println(customer.getName());
         }
-    }
-
-    public String toString() {
-        return "Customers: " + customers;
+        System.out.println("~~~~~~~~~~~~~~");
     }
 
     public void printCustomerInfo(String name) {
         System.out.println(name + "'s transactions: ");
         System.out.println(getCustomerByName(name).getTransactions());
-        // print customer name
-        // and transaction amounts. method should use unboxing
-        // how does it unbox? takes Double wrapper from customer arraylist of transactions
-        // and returns a double
-
     }
-
 }
