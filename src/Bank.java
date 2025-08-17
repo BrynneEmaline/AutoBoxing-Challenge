@@ -58,7 +58,9 @@ public class Bank {
     }
 
     public void printCustomerInfo(String name) {
+        System.out.println("~~~~~~~~~~~~~~");
         System.out.println(name + "'s transactions: ");
         System.out.println(getCustomerByName(name).getTransactions());
+        System.out.println("~~~~~~~~~~~~~~");
     }
 }

@@ -52,17 +52,46 @@ public class UserMenu {
                         }
                     } while(chooseAnother);
                 }
+
                 case "2" -> {
-                    System.out.println("Which user is this transaction for? ");
-                    String name = scanner.nextLine();
-                    if (bank.userExists(name)) { // add exception handling for non-double responses
-                        System.out.println("Is this transaction a withdrawal or deposit? W/D ");
-                        String transactionType = scanner.nextLine();
-                        System.out.println("How much is the transaction for? ");
-                        double amount = scanner.nextDouble();
-                        bank.addTransaction(amount, name, transactionType);
-                    }
+                    boolean chooseAnother = true;
+                    do {
+                        System.out.println("Which user is this transaction for? ");
+                        String name = scanner.nextLine();
+
+                        if (bank.userExists(name)) {
+                            String transactionType;
+                            while (true) {
+                                System.out.println("Is this transaction a withdrawal or deposit? W/D ");
+                                 transactionType = scanner.nextLine();
+                                if (transactionType.equalsIgnoreCase("W") || transactionType.equalsIgnoreCase("D")) {
+                                    break;
+                                }
+                                System.out.println("Invalid input. Enter W or D ");
+                            }
+
+                            System.out.println("How much is the transaction for? ");
+                            double amount = scanner.nextDouble();
+                            bank.addTransaction(amount, name, transactionType);
+                        }
+
+                        String userChoice;
+                        while (true) {
+                            System.out.println("Enter another user? Y/N");
+                            userChoice = scanner.nextLine();
+
+                            if (userChoice.equalsIgnoreCase("Y") || userChoice.equalsIgnoreCase("N")) {
+                                break;
+                            }
+                            System.out.println("Invalid input. Enter Y or N ");
+                        }
+
+                        if (userChoice.equalsIgnoreCase("N")) {
+                            chooseAnother = false;
+                        }
+                    } while (chooseAnother);
                 }
+
                 case "3" -> {
                     bank.listCustomers();
                 }
