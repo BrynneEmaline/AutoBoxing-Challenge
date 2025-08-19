@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -56,6 +57,12 @@ public class UserMenu {
                 case "2" -> {
                     boolean chooseAnother = true;
                     do {
+                        if (bank.getCustomers().isEmpty()) {
+                            System.out.println("There are no customers currently in the system. ");
+                            System.out.println();
+                            break;
+                        }
+
                         System.out.println("Which user is this transaction for? ");
                         String name = scanner.nextLine();
 
@@ -70,14 +77,25 @@ public class UserMenu {
                                 System.out.println("Invalid input. Enter W or D ");
                             }
 
-                            System.out.println("How much is the transaction for? ");
-                            double amount = scanner.nextDouble();
-                            bank.addTransaction(amount, name, transactionType);
+                            double amount = 0;
+                            while (true) {
+                                System.out.println("How much is the transaction for? ");
+                                try {
+                                    amount = scanner.nextDouble();
+                                    scanner.nextLine();
+                                    break;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Invalid input. Please enter a numerical amount.");
+                                    scanner.nextLine();
+                                }
+                            }
+                                bank.addTransaction(amount, name, transactionType);
+                        } else {
+                            break;
                         }
-
                         String userChoice;
                         while (true) {
-                            System.out.println("Enter another user? Y/N");
+                            System.out.println("Enter another transaction? Y/N");
                             userChoice = scanner.nextLine();
 
                             if (userChoice.equalsIgnoreCase("Y") || userChoice.equalsIgnoreCase("N")) {
@@ -93,14 +111,29 @@ public class UserMenu {
                 }
 
                 case "3" -> {
+                    if (bank.getCustomers().isEmpty()) {
+                        System.out.println("There are no customers currently in the system. ");
+                        System.out.println();
+                        break;
+                    }
                     bank.listCustomers();
                 }
+
                 case "4" -> {
+                    if (bank.getCustomers().isEmpty()) {
+                        System.out.println("There are no customers currently in the system. ");
+                        System.out.println();
+                        break;
+                    }
                     System.out.println("What is the user's name? ");
                     String name = scanner.nextLine().trim();
                     bank.printCustomerInfo(name);
                 }
-                case "5" -> System.out.println("Exiting banking app. ");
+                case "5" -> System.out.println("""
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+                Exiting banking app...
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+                """);
                 default -> System.out.println("Invalid choice. ");
             }
         } while (!Objects.equals(choice, "5"));

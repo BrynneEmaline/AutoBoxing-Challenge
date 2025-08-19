@@ -30,7 +30,7 @@ public class Bank {
     }
 
     public void addTransaction(double amount, String name, String transactionType) {
-        if (userExists(name)) {
+        if (!customers.isEmpty()) {
             double finalAmount = amount;
             if (transactionType.equalsIgnoreCase("W")) {
                 finalAmount = -Math.abs(amount);
@@ -49,8 +49,13 @@ public class Bank {
         return null;
     }
 
+    public ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
     public void listCustomers() {
         System.out.println("~~~~~~~~~~~~~~");
+        System.out.println("All Customers: ");
         for (Customer customer : customers) {
             System.out.println(customer.getName());
         }
@@ -58,6 +63,10 @@ public class Bank {
     }
 
     public void printCustomerInfo(String name) {
+        if (!userExists(name)) {
+            return;
+        }
+
         System.out.println("~~~~~~~~~~~~~~");
         System.out.println(name + "'s transactions: ");
         System.out.println(getCustomerByName(name).getTransactions());
