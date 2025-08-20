@@ -127,7 +127,13 @@ public class UserMenu {
                     }
                     System.out.println("What is the user's name? ");
                     String name = scanner.nextLine().trim();
+                    if (bank.getCustomerByName(name).getTransactions().isEmpty()) {
+                        System.out.println("Customer has no transactions. ");
+                        break;
+                    }
                     bank.printCustomerInfo(name);
+
+
                 }
                 case "5" -> System.out.println("""
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
