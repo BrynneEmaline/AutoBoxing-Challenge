@@ -11,18 +11,21 @@ public class Bank {
         for (Customer customer : customers) {
             if (customer.getName().equals(name)) {
                 System.out.println("Customer already in system.");
+                System.out.println();
                 return;
             }
         }
         Customer customer = new Customer(name);
         customers.add(customer);
         System.out.println("New user added. ");
+        System.out.println();
     }
 
     public void removeCustomer(String name) {
         if (userExists(name)) {
-                customers.remove(getCustomerByName(name));
-                System.out.println("Customer " + name + " removed.");
+            customers.remove(getCustomerByName(name));
+            System.out.println("Customer " + name + " removed.");
+            System.out.println();
         }
     }
 
@@ -33,12 +36,14 @@ public class Bank {
             }
         }
         System.out.println("Customer not found. ");
+        System.out.println();
         return false;
     }
 
     public boolean isUserListEmpty() {
         if (getCustomers().isEmpty()) {
             System.out.println("There are no customers currently in the system. ");
+            System.out.println();
             return true;
         }
         return false;
