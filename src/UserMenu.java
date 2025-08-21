@@ -25,7 +25,8 @@ public class UserMenu {
                      2. Add new transaction
                      3. View all users
                      4. View user transactions
-                     5. Exit application
+                     5. Remove a user
+                     6. Exit application
                     """);
             choice = scanner.nextLine().trim();
 
@@ -34,7 +35,7 @@ public class UserMenu {
                     boolean chooseAnother = true;
                     do {
                         System.out.println("What is the user's name? ");
-                        String name = scanner.nextLine();
+                        String name = scanner.nextLine().trim();
                         bank.addCustomer(name);
 
                         String userChoice;
@@ -125,23 +126,36 @@ public class UserMenu {
                         System.out.println();
                         break;
                     }
+
                     System.out.println("What is the user's name? ");
                     String name = scanner.nextLine().trim();
+
                     if (bank.getCustomerByName(name).getTransactions().isEmpty()) {
                         System.out.println("Customer has no transactions. ");
                         break;
                     }
                     bank.printCustomerInfo(name);
+                }
+
+                case "5" -> {
+                    if (bank.getCustomers().isEmpty()) {
+                        System.out.println("There are no customers currently in the system. ");
+                        System.out.println();
+                        break;
+                    }
+
+                    System.out.println("What is the user's name? ");
+                    String name = scanner.nextLine().trim();
 
 
                 }
-                case "5" -> System.out.println("""
+                case "6" -> System.out.println("""
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
                 Exiting banking app...
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
                 """);
                 default -> System.out.println("Invalid choice. ");
             }
-        } while (!Objects.equals(choice, "5"));
+        } while (!Objects.equals(choice, "6"));
     }
 }

@@ -19,6 +19,17 @@ public class Bank {
         System.out.println("New user added. ");
     }
 
+    public void removeCustomer(String name) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(name)) {
+                System.out.println("Customer " + name + "removed.");
+            }
+        }
+        Customer customer = new Customer(name);
+        customers.add(customer);
+        System.out.println("New user added. ");
+    }
+
     public boolean userExists(String name) {
         for (Customer customer: customers) {
             if (customer.getName().equals(name)) {
