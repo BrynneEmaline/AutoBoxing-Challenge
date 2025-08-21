@@ -20,23 +20,27 @@ public class Bank {
     }
 
     public void removeCustomer(String name) {
-        for (Customer customer : customers) {
-            if (customer.getName().equals(name)) {
-                System.out.println("Customer " + name + "removed.");
-            }
+        if (userExists(name)) {
+                customers.remove(getCustomerByName(name));
+                System.out.println("Customer " + name + " removed.");
         }
-        Customer customer = new Customer(name);
-        customers.add(customer);
-        System.out.println("New user added. ");
     }
 
     public boolean userExists(String name) {
         for (Customer customer: customers) {
-            if (customer.getName().equals(name)) {
+            if (customer.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
         System.out.println("Customer not found. ");
+        return false;
+    }
+
+    public boolean isUserListEmpty() {
+        if (getCustomers().isEmpty()) {
+            System.out.println("There are no customers currently in the system. ");
+            return true;
+        }
         return false;
     }
 
@@ -53,7 +57,7 @@ public class Bank {
 
     public Customer getCustomerByName(String name) {
         for (Customer customer : customers) {
-            if (customer.getName().equals(name)) {
+            if (customer.getName().equalsIgnoreCase(name)) {
                 return customer;
             }
         }

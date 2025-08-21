@@ -58,9 +58,7 @@ public class UserMenu {
                 case "2" -> {
                     boolean chooseAnother = true;
                     do {
-                        if (bank.getCustomers().isEmpty()) {
-                            System.out.println("There are no customers currently in the system. ");
-                            System.out.println();
+                        if (bank.isUserListEmpty()) {
                             break;
                         }
 
@@ -112,18 +110,15 @@ public class UserMenu {
                 }
 
                 case "3" -> {
-                    if (bank.getCustomers().isEmpty()) {
-                        System.out.println("There are no customers currently in the system. ");
-                        System.out.println();
+                    if (bank.isUserListEmpty()) {
                         break;
                     }
+
                     bank.listCustomers();
                 }
 
                 case "4" -> {
-                    if (bank.getCustomers().isEmpty()) {
-                        System.out.println("There are no customers currently in the system. ");
-                        System.out.println();
+                    if (bank.isUserListEmpty()) {
                         break;
                     }
 
@@ -138,17 +133,15 @@ public class UserMenu {
                 }
 
                 case "5" -> {
-                    if (bank.getCustomers().isEmpty()) {
-                        System.out.println("There are no customers currently in the system. ");
-                        System.out.println();
+                    if (bank.isUserListEmpty()) {
                         break;
                     }
 
                     System.out.println("What is the user's name? ");
                     String name = scanner.nextLine().trim();
-
-
+                    bank.removeCustomer(name);
                 }
+
                 case "6" -> System.out.println("""
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
                 Exiting banking app...
